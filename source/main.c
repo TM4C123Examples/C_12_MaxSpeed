@@ -3,7 +3,7 @@
 unsigned speed;
 
 int main(){
-	SystemCoreClockUpdate();
+	//SystemCoreClockUpdate();
 	speed=SystemCoreClock;
 	while(1);
 }
