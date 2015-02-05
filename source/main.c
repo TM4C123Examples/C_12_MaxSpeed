@@ -4,7 +4,7 @@
 unsigned int speed;
 unsigned int idle_eventCounter;
 int main(){
-	//SystemCoreClockUpdate();
+	SystemCoreClockUpdate();
 	speed=SystemCoreClock;
 	timerInit();
 	timerSet(1814,0);//interrupt every (0+1)*2000 counts 

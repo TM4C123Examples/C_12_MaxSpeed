@@ -359,10 +359,10 @@
       #define __CORE_CLK_PRE   PLL_CLK
     #endif
     #if (RCC_Val & (1UL<<22))                            /* check USESYSDIV */
-      #if (RCC2_Val & (1UL<<11))
+      #if (RCC2_Val & (1UL<<11))                         /* check BYPASS */
         #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1))
       #else
-				#if (RCC2_Val & (1UL<<31))
+				#if (RCC2_Val & (1UL<<30))		/* check DIV400 */
 					#define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>22) & (0x7F)) + 1))
 				#else
 					#define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1) / 2)
@@ -567,7 +567,11 @@ void SystemCoreClockUpdate (void)            /* Get Core Clock Frequency      */
         if (rcc2 & (1UL<<11)) {
           SystemCoreClock = SystemCoreClock / (((rcc2>>23) & (0x3F)) + 1);
         } else {
-          SystemCoreClock = SystemCoreClock / (((rcc2>>23) & (0x3F)) + 1) / 2;
+					if(rcc2 & (1UL<<30)){                         /*check DIV400 */
+						SystemCoreClock = SystemCoreClock / (((rcc2>>22) & (0x7F)) + 1);
+					}else{
+						SystemCoreClock = SystemCoreClock / (((rcc2>>23) & (0x3F)) + 1) / 2;
+					}
         }
       }
     } else {
