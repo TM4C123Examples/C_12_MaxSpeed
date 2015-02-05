@@ -359,13 +359,13 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath></IncludePath>
+              <IncludePath>.\include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -412,6 +412,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\source\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\source\timer.c</FilePath>
             </File>
           </Files>
         </Group>
