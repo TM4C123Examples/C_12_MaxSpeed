@@ -362,7 +362,11 @@
       #if (RCC2_Val & (1UL<<11))
         #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1))
       #else
-        #define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1) / 2)
+				#if (RCC2_Val & (1UL<<31))
+					#define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>22) & (0x7F)) + 1))
+				#else
+					#define __CORE_CLK  (__CORE_CLK_PRE / (((RCC2_Val>>23) & (0x3F)) + 1) / 2)
+				#endif
       #endif
     #else
       #define __CORE_CLK  __CORE_CLK_PRE
